@@ -28,7 +28,7 @@ Note: some useful points for this include the sequencing machine and facility.
 0. Setup
 ```
 mkdir -p work/00_fastq
-cp  /ifs/data/as6282_gp/share/raw_ngs/shape_202305{28,29,30}/* work/00_fastq/
+cp  /ifs/data/as6282_gp/share/raw_ngs/shape_202{21010,21111,30411}/* work/00_fastq/
 ```
 
 1. Link files
@@ -48,6 +48,10 @@ For example
 
 eventually the results will just be `alph-0001-01` for that example as the last parts of the file name will merge with it. The number is arbitrary and if it helps to track with the numbering system that you have for the plate and well, that can also be accommodated instead.
 
+(Workflow is to convert 
+`ln -s $(realpath work/00_fastq/SRC) work/01_links/DST
+to include your fastq file source (SRC) and the destination (DST) file
+)
 
 ```
 mkdir work/01_links
@@ -56,13 +60,32 @@ ln -s $(realpath work/00_fastq/alpha-DMSO-G6-A3484-20230405.fastq.gz) work/01_li
 
 ln -s $(realpath work/00_fastq/DENV-mut-G1-A3413-20230405.fastq.gz)  work/01_links/denv-0001-01-m-s.fastq.gz
 ln -s $(realpath work/00_fastq/DENV-DMSO-G2-A3429-20230405.fastq.gz)  work/01_links/denv-0001-01-c-s.fastq.gz
+
+bash scripts/link.sh A3461_S25_L001_R1_001.fastq.gz st91-0001-01-c-f.fastq.gz
+bash scripts/link.sh A3461_S25_L001_R2_001.fastq.gz st91-0001-01-c-r.fastq.gz
+
+bash scripts/link.sh A3479_S41_L001_R1_001.fastq.gz st91-0001-03-c-f.fastq.gz
+bash scripts/link.sh A3479_S41_L001_R2_001.fastq.gz st91-0001-03-c-r.fastq.gz
+
+bash scripts/link.sh A3481_S17_L001_R1_001.fastq.gz st91-0001-03-m-f.fastq.gz
+bash scripts/link.sh A3481_S17_L001_R2_001.fastq.gz st91-0001-03-m-r.fastq.gz
+
+bash scripts/link.sh A3482_S9_L001_R1_001.fastq.gz st91-0001-02-m-f.fastq.gz
+bash scripts/link.sh A3482_S9_L001_R2_001.fastq.gz st91-0001-02-m-r.fastq.gz
+
+bash scripts/link.sh A3489_S1_L001_R1_001.fastq.gz st91-0001-01-m-f.fastq.gz
+bash scripts/link.sh A3489_S1_L001_R2_001.fastq.gz st91-0001-01-m-r.fastq.gz
+
+bash scripts/link.sh A3498_S33_L001_R1_001.fastq.gz st91-0001-02-c-f.fastq.gz
+bash scripts/link.sh A3498_S33_L001_R2_001.fastq.gz st91-0001-02-c-r.fastq.gz
 ```
 
 2. Initial QC
 ```
 qlogin -l mem=4G,time=:60:
+cd /ifs/scratch/as6282_gp/rpz2103/xrrna
 mkdir -p work/02_rawqc
-module load fastqc
+module load fastqc python3 pyyaml multiqc
 fastqc -o work/02_rawqc work/01_links/*
 multiqc -o work/02_rawqc work/02_rawqc
 ```
@@ -81,7 +104,7 @@ done
 ```
 qlogin -l mem=4G,time=:60:
 mkdir -p work/04_trimqc
-module load fastqc multiqc
+module load fastqc python3 pyyaml multiqc
 fastqc -o work/04_trimqc work/03_trim/*
 multiqc -o work/04_trimqc work/04_trimqc
 ```
@@ -93,7 +116,6 @@ out=work/05_sm
 src=work/03_trim
 mkdir -p $out
 module load shapemapper
-shapemapper --overwrite --verbose --name alph-0001-01 --out work/05_sm/alph-0001-01 --target data/rnas/alpha-140.fasta --modified --U work/03_trim/alph-0001-01-m-s.trim.fastq.gz --untreated --U work/03_trim/alph-0001-01-c-s.trim.fastq.gz
 for rna in alph-0001-01 denv-0001-01; do 
-	echo shapemapper --temp $TMPDIR --overwrite --verbose --name $rna --log $out/$rna.log.txt --out $out/$rna --target data/rnas/${rna%%-*}.fa --modified --U $src/$rna-m-s.trim.fastq.gz --untreated --U $src/$rna-c-s.trim.fastq.gz	
+	 shapemapper --temp $TMPDIR --overwrite --verbose --name $rna --log $out/$rna.log.txt --out $out/$rna --target data/rnas/${rna%%-*}.fa --modified --U $src/$rna-m-s.trim.fastq.gz --untreated --U $src/$rna-c-s.trim.fastq.gz	
 done
