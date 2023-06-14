@@ -28,7 +28,7 @@ Note: some useful points for this include the sequencing machine and facility.
 0. Setup
 ```
 mkdir -p work/00_fastq
-cp  /ifs/data/as6282_gp/share/raw_ngs/shape_202{21010,21111,30411}/* work/00_fastq/
+cp  /ifs/data/as6282_gp/share/raw_ngs/shape_202305{28,29,30}/* work/00_fastq/
 ```
 
 1. Link files
