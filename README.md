@@ -6,9 +6,9 @@
 
 Note: some useful points for this include the sequencing machine and facility. 
 
-- `/ifs/data/as6282_gp/share/raw_ngs/shape_20230528` - 
-- `/ifs/data/as6282_gp/share/raw_ngs/shape_20230529` - 
-- `/ifs/data/as6282_gp/share/raw_ngs/shape_20230530` - 
+- `/ifs/data/as6282_gp/share/raw_ngs/shape_20221010` - 
+- `/ifs/data/as6282_gp/share/raw_ngs/shape_20221111` - 
+- `/ifs/data/as6282_gp/share/raw_ngs/shape_20230411` - 
 
 ### Trimmomatic adaptors
 
@@ -55,11 +55,11 @@ to include your fastq file source (SRC) and the destination (DST) file
 
 ```
 mkdir work/01_links
-ln -s $(realpath work/00_fastq/alpha-mut-G5-A3485-20230405.fastq.gz) work/01_links/alph-0001-01-m-s.fastq.gz
-ln -s $(realpath work/00_fastq/alpha-DMSO-G6-A3484-20230405.fastq.gz) work/01_links/alph-0001-01-c-s.fastq.gz
+ln -s $(realpath work/00_fastq/alpha-mut-G5-A3485-20230405.fastq.gz) work/01_links/alph-0003-01-m-s.fastq.gz
+ln -s $(realpath work/00_fastq/alpha-DMSO-G6-A3484-20230405.fastq.gz) work/01_links/alph-0003-01-c-s.fastq.gz
 
-ln -s $(realpath work/00_fastq/DENV-mut-G1-A3413-20230405.fastq.gz)  work/01_links/denv-0001-01-m-s.fastq.gz
-ln -s $(realpath work/00_fastq/DENV-DMSO-G2-A3429-20230405.fastq.gz)  work/01_links/denv-0001-01-c-s.fastq.gz
+ln -s $(realpath work/00_fastq/DENV-mut-G1-A3413-20230405.fastq.gz)  work/01_links/denv-0003-01-m-s.fastq.gz
+ln -s $(realpath work/00_fastq/DENV-DMSO-G2-A3429-20230405.fastq.gz)  work/01_links/denv-0003-01-c-s.fastq.gz
 
 bash scripts/link.sh A3461_S25_L001_R1_001.fastq.gz st91-0001-01-c-f.fastq.gz
 bash scripts/link.sh A3461_S25_L001_R2_001.fastq.gz st91-0001-01-c-r.fastq.gz
@@ -78,8 +78,20 @@ bash scripts/link.sh A3489_S1_L001_R2_001.fastq.gz st91-0001-01-m-r.fastq.gz
 
 bash scripts/link.sh A3498_S33_L001_R1_001.fastq.gz st91-0001-02-c-f.fastq.gz
 bash scripts/link.sh A3498_S33_L001_R2_001.fastq.gz st91-0001-02-c-r.fastq.gz
-```
 
+bash scripts/link.sh A1_plate16-Well-A01_S289_L001_R1_001.fastq.gz st9h-0002-01-m-s.fastq.gz
+bash scripts/link.sh A2_plate16-Well-A02_S297_L001_R1_001.fastq.gz st9h-0002-02-m-s.fastq.gz
+bash scripts/link.sh A3_plate16-Well-A03_S305_L001_R1_001.fastq.gz st9h-0002-03-m-s.fastq.gz
+bash scripts/link.sh A4_plate16-Well-A04_S313_L001_R1_001.fastq.gz st9h-0002-04-m-s.fastq.gz
+bash scripts/link.sh A6_plate16-Well-A06_S329_L001_R1_001.fastq.gz st9h-0002-01-c-s.fastq.gz  
+bash scripts/link.sh A7_plate16-Well-A07_S337_L001_R1_001.fastq.gz st9h-0002-02-c-s.fastq.gz
+bash scripts/link.sh A8_plate16-Well-A08_S345_L001_R1_001.fastq.gz st9h-0002-03-c-s.fastq.gz
+bash scripts/link.sh A9_plate16-Well-A09_S353_L001_R1_001.fastq.gz st9h-0002-04-c-s.fastq.gz
+ 
+# TODO
+bash scripts/link.sh
+bash scripts/link.sh
+```
 2. Initial QC
 ```
 qlogin -l mem=4G,time=:60:
