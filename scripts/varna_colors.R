@@ -14,8 +14,5 @@ compute_varna_colors(c1c6, first_base = 24, last_base = 77) |>
 c1c6$Sequence|> stringr::str_c(collapse = "")
 
 alpha <- readr::read_delim("test_alpha-140_profile.txt")
-compute_varna_colors(alpha,
-                     first_base = 19, last_base = 99) |>
+compute_varna_colors(alpha, first_base = 19, last_base = 99) |>
   writeLines("test_alpha-profile.colors.txt")
-GGCUGGGUGAGAAAGGGGCCACCGCAGACUGGUUGGAUAGGUUUGGGAACAUAGAUCCAAACUCCAACCAACGGGUAGGUCGAACCCGCGGAGUCGAGAAUGAUUACCAUAAUUGGUAGGUGAGGCCACGCCGUUUGGUC
-CCACCGCAGACUGGUUGGAUAGGUUUGGGAACAUAGAUCCAAACUCCAACCAACGGGUAGGUCGAACCCGCGGAGUCGAGA
