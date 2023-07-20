@@ -22,6 +22,9 @@ Note: some useful points for this include the sequencing machine and facility.
 - `data/rnas/C_ST9_native_150nt.fa` - 
 - `data/rnas/alpha-140.fasta` - 
 - `data/rnas/denv-140.fasta` - 
+- `data/rnas/C_ST9_short.dbn` - The structure of the 54-nt active part of the ST9 RNA (from Jeanine)
+- `data/rnas/C_ST9_short_pknot.dbn` - The structure of the 54-nt active part of the ST9 RNA, including a pseudoknot (from Jeanine)
+- `data/rnas/C_ST9_short_open.dbn` - The structure based on a consensus fold (from Lena)
 
 ## Pipeline
 
