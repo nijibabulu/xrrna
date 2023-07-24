@@ -26,6 +26,12 @@ Note: some useful points for this include the sequencing machine and facility.
 - `data/rnas/C_ST9_short_pknot.dbn` - The structure of the 54-nt active part of the ST9 RNA, including a pseudoknot (from Jeanine)
 - `data/rnas/C_ST9_short_open.dbn` - The structure based on a consensus fold (from Lena)
 
+### Previous results
+
+In writing the grant, we lost access to the cluster, so used intermediate results
+from previous runs of shapemapper for the coloring of the figures in `data/intermediate`.
+The colors are computed in `scripts/varna_colors.R`.
+
 ## Pipeline
 
 0. Setup
